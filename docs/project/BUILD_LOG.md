@@ -1842,3 +1842,12 @@ git commit -m "Phase 2: schema (38 indexes), data model doc, toy graph answering
 # → commit 0fe6f2c
 bash scripts/sync_mirror.sh
 ```
+
+### Step 2.6 · Fri 16 Oct, 02:30 · Stop mirroring `scripts/sync_mirror.sh`
+The user wants the sync script to exist only in the main repo. Add `--exclude '/scripts/sync_mirror.sh' \` after the `/LICENSE` line in `scripts/sync_mirror.sh`, update rule 7 in `CLAUDE.md`, then remove the existing copy:
+```bash
+rm -f ../Vidure-secondary-brain/scripts/sync_mirror.sh
+git add scripts/sync_mirror.sh CLAUDE.md docs/project/BUILD_LOG.md
+git commit -m "Mirror: exclude the sync script itself"
+bash scripts/sync_mirror.sh
+```
