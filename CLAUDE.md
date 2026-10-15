@@ -35,7 +35,7 @@ The agent answers who owns or knows what, why something was decided, what it aff
 4. **Never write secrets** into code, docs, logs or commits. `.env` is gitignored; `.env.example` lists the variable names.
 5. **Don't do the user's learning tasks for them.** The gold labels in `eval/gold_decisions.csv` are hand-written by the user and must never be generated from the graph or the LLM. They are the evaluation's independent truth.
 6. Follow the plan's cut order when behind. Never cut the items PLAN.md marks as never-cut.
-7. **Mirror every change to `../Vidure-secondary-brain/`.** After any change in this repo (code, docs, config, commits), run `bash scripts/sync_mirror.sh`. The mirror is a plain copy: never edit, run, test or commit anything there. `.git`, `data/`, `docs/` and `.venv/` are excluded (`docs/` is not wanted in the mirror; the user adds `data/` at the end). It lives outside the repo and is never pushed.
+7. **Mirror every change to `../Vidure-secondary-brain/`.** After any change in this repo (code, docs, config, commits), run `bash scripts/sync_mirror.sh`. The mirror is a plain copy: never edit, run, test or commit anything there. `.git`, `data/`, `docs/`, `CLAUDE.md` and `.venv/` are excluded (`docs/` and `CLAUDE.md` are not wanted in the mirror; the user adds `data/` at the end). It lives outside the repo and is never pushed.
 
 ## Hackathon rules that constrain the code
 - FalkorDB must do real work (rule 3): every agent tool is a parameterized Cypher query, and the LLM never writes Cypher.

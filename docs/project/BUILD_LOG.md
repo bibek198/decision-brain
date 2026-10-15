@@ -1504,3 +1504,12 @@ git add scripts/sync_mirror.sh CLAUDE.md docs/project/BUILD_LOG.md
 git commit -m "Mirror: exclude docs/"
 bash scripts/sync_mirror.sh
 ```
+
+### Step 1.18 · Fri 16 Oct, 02:30 · Stop mirroring `CLAUDE.md`
+The user doesn't want `CLAUDE.md` in the backup mirror. Add `--exclude '/CLAUDE.md' \` after the `/docs/` line in `scripts/sync_mirror.sh`, update rule 7 in `CLAUDE.md`, then remove the existing copy:
+```bash
+rm -f ../Vidure-secondary-brain/CLAUDE.md
+git add scripts/sync_mirror.sh CLAUDE.md docs/project/BUILD_LOG.md
+git commit -m "Mirror: exclude CLAUDE.md"
+bash scripts/sync_mirror.sh
+```
