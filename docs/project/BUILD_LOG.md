@@ -1495,3 +1495,12 @@ git add scripts/sync_mirror.sh CLAUDE.md docs/project/BUILD_LOG.md
 git commit -m "Add backup mirror sync script and CLAUDE.md rule 7"
 bash scripts/sync_mirror.sh          # → mirror synced -> /Users/bibek/Developer/Hackathons/Vidure-secondary-brain (...)
 ```
+
+### Step 1.17 · Fri 16 Oct, 02:25 · Stop mirroring `docs/`
+The user doesn't want `docs/` in the backup mirror. Add `--exclude '/docs/' \` after the `/data/` line in `scripts/sync_mirror.sh`, update rule 7 in `CLAUDE.md`, then remove the existing copy. Excluded paths are never deleted by `--delete`, so the old copy has to be removed by hand:
+```bash
+rm -rf ../Vidure-secondary-brain/docs
+git add scripts/sync_mirror.sh CLAUDE.md docs/project/BUILD_LOG.md
+git commit -m "Mirror: exclude docs/"
+bash scripts/sync_mirror.sh
+```
