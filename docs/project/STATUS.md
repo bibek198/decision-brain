@@ -6,7 +6,7 @@ All times IST. Deadline: Sun 18 Oct 2026, 11:59 PM. Target submission: Sun 7:00 
 |---|---|---|---|---|
 | [0 Foundation](phases/phase-00-foundation.md) | Thu 11:00 PM – 12:30 AM | Done | Repo public, both smoke tests pass, data survives restart, fetch running | ac67226 |
 | [1 Data](phases/phase-01-data.md) | Thu night → Fri 10:30 AM | In progress | Raw data frozen, manifest committed, 15 gold rows | |
-| [2 Schema](phases/phase-02-schema.md) | Fri 10:30 AM – 12:00 PM | Not started | Every demo question answered on the toy graph | |
+| [2 Schema](phases/phase-02-schema.md) | Fri 10:30 AM – 12:00 PM | Done | Every demo question answered on the toy graph | 0fe6f2c |
 | [3 Load](phases/phase-03-load.md) | Fri 12:00 – 3:30 PM | Not started | Second load changes nothing, counts match, history intervals loaded | |
 | [4 Tools](phases/phase-04-tools.md) | Fri 4:00 – 8:00 PM | Not started | All read tools pass tests with no LLM | |
 | [5 Extraction](phases/phase-05-extraction.md) | Fri 8:00 – 11:30 PM | Not started | Decisions loaded, audit recorded | |

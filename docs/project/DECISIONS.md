@@ -2,6 +2,11 @@
 
 Newest first. Format: decision, options considered, why, consequences.
 
+## D-012 · 2026-10-16 · Intervals as epoch seconds on edges; Status and Release as nodes
+- **Options:** status as a KEP property overwritten on change; status snapshots; interval edges to shared Status and Release nodes.
+- **Why:** interval edges answer "now" (`valid_to IS NULL`) and "as of t" with one filter, and keep the history the replay eval needs. Shared Status and Release nodes make "all withdrawn KEPs" and "everything targeting v1.33" a single hop.
+- **Consequences:** handlers close one interval and open another on every change. KEP.status is kept as a convenience copy of the open interval.
+
 ## D-011 · 2026-10-15 · API scope: six SIGs
 - **Options:** all 24 SIGs; the 5–6 largest; SIGs chosen for decision variety.
 - **Why:** node (139 KEPs), api-machinery (84), storage (69), scheduling (59), auth (36) and cli (35) hold 422 KEPs with 16 rejected, withdrawn or deferred and 39 supersession links. sig-network was dropped despite 62 KEPs because it has only 1 supersession link.
