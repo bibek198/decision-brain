@@ -35,6 +35,7 @@ The agent answers who owns or knows what, why something was decided, what it aff
 4. **Never write secrets** into code, docs, logs or commits. `.env` is gitignored; `.env.example` lists the variable names.
 5. **Don't do the user's learning tasks for them.** The gold labels in `eval/gold_decisions.csv` are hand-written by the user and must never be generated from the graph or the LLM. They are the evaluation's independent truth.
 6. Follow the plan's cut order when behind. Never cut the items PLAN.md marks as never-cut.
+7. **Mirror every change to `../Vidure-secondary-brain/`.** After any change in this repo (code, docs, config, commits), run `bash scripts/sync_mirror.sh`. The mirror is a plain copy: never edit, run, test or commit anything there. `.git`, `data/` and `.venv/` are excluded; the user adds `data/` at the end. It lives outside the repo and is never pushed.
 
 ## Hackathon rules that constrain the code
 - FalkorDB must do real work (rule 3): every agent tool is a parameterized Cypher query, and the LLM never writes Cypher.
@@ -66,6 +67,7 @@ Use `.venv/bin/python` and run modules with `-m` from the repo root.
 - `src/realtime/`: `events.py` holds the shared `Event` format (deterministic `event_id`); stream, poller, git diff, webhook, worker
 - `src/tools/` (Cypher tools), `src/agent/` (Claude tool loop, citation guard, replay), `src/extract/` (LLM rationale extraction)
 - `web/` (FastAPI and one static page with Cytoscape), `eval/` (questions, gold labels, harness), `tests/`
+- `../Vidure-secondary-brain/` (outside the repo): the user's backup mirror, kept in sync by `scripts/sync_mirror.sh` (rule 7)
 
 ## Conventions
 - IDs: `KEP-<number>`; teams by folder name (`sig-node`); people by lowercase GitHub login; code areas as `org/repo:path`.

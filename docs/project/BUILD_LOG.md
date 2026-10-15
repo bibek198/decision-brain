@@ -1463,3 +1463,35 @@ Create `CLAUDE.md` at the repo root. Claude Code reads it at the start of every 
 git add CLAUDE.md docs/project/BUILD_LOG.md
 git commit -m "Add CLAUDE.md with project rules, commands, conventions and gotchas"
 ```
+
+### Step 1.16 · Fri 16 Oct, 02:15 · Backup mirror `../Vidure-secondary-brain/`
+The user keeps a plain local backup of the repo beside it. It is never edited directly and never pushed. It first sat inside the repo, untracked but not gitignored, so a `git add -A` would have committed it along with its `.env`. Moving it one level up keeps it out of the repo entirely. Its existing `.git` folder is left as it is, and the sync never touches it.
+```bash
+mv /Users/bibek/Developer/Hackathons/decision-brain-graph-hack/Vidure-secondary-brain /Users/bibek/Developer/Hackathons/
+```
+Create `scripts/sync_mirror.sh` (then `chmod +x scripts/sync_mirror.sh`):
+```bash
+#!/usr/bin/env bash
+# Copy the working repo into the backup mirror ../Vidure-secondary-brain (plain files, no git history).
+# Never edit the mirror directly; data/ is excluded (added by hand at the end).
+set -euo pipefail
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+MIRROR="$(dirname "$ROOT")/Vidure-secondary-brain"
+mkdir -p "$MIRROR"
+rsync -a --delete \
+  --exclude '/.git/' \
+  --exclude '/data/' \
+  --exclude '/.venv/' \
+  --exclude '/decision-brain/' \
+  --exclude '__pycache__/' --exclude '.pytest_cache/' --exclude '.DS_Store' \
+  "$ROOT/" "$MIRROR/"
+echo "mirror synced -> $MIRROR ($(date '+%Y-%m-%d %H:%M:%S'))"
+```
+`--delete` keeps the mirror exact: files removed from the repo are removed there too. Excluded paths (`.git`, `data/`, `.venv/`) are never touched in the mirror.
+
+Add working rule 7 to `CLAUDE.md` ("Mirror every change to `../Vidure-secondary-brain/` with `bash scripts/sync_mirror.sh`; never edit it; `data/` excluded; never pushed"), plus one Layout line. Then:
+```bash
+git add scripts/sync_mirror.sh CLAUDE.md docs/project/BUILD_LOG.md
+git commit -m "Add backup mirror sync script and CLAUDE.md rule 7"
+bash scripts/sync_mirror.sh          # → mirror synced -> /Users/bibek/Developer/Hackathons/Vidure-secondary-brain (...)
+```
