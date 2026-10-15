@@ -1456,3 +1456,10 @@ echo "kep,outcome,reason_one_line,evidence_url,replaced_by,labelled_by,notes" > 
 git add -A && git commit -m "Phase 1: KEP, SIG/OWNERS and git-history normalizers; seed data; gold candidates"
 # → commit 1ac6da0
 ```
+
+### Step 1.15 · Fri 16 Oct, 02:00 · CLAUDE.md (instructions for the coding assistant)
+Create `CLAUDE.md` at the repo root. Claude Code reads it at the start of every session, so it holds the project summary, the working rules (record every step here, keep the tracking docs current, commit but let the user push, no secrets, gold labels are hand-written), the hackathon rules that constrain the code, the commands, the layout, the conventions and the verified gotchas. Copy it from the repo at the commit below.
+```bash
+git add CLAUDE.md docs/project/BUILD_LOG.md
+git commit -m "Add CLAUDE.md with project rules, commands, conventions and gotchas"
+```
