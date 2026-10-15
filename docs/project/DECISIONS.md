@@ -2,6 +2,11 @@
 
 Newest first. Format: decision, options considered, why, consequences.
 
+## D-011 · 2026-10-15 · API scope: six SIGs
+- **Options:** all 24 SIGs; the 5–6 largest; SIGs chosen for decision variety.
+- **Why:** node (139 KEPs), api-machinery (84), storage (69), scheduling (59), auth (36) and cli (35) hold 422 KEPs with 16 rejected, withdrawn or deferred and 39 supersession links. sig-network was dropped despite 62 KEPs because it has only 1 supersession link.
+- **Consequences:** all 686 kep.yaml files still load from git; only issues, comments and reviews are limited to these SIGs.
+
 ## D-010 · 2026-10-15 · Drop emails from the SIG registry
 - **Options:** keep all `sigs.yaml` fields; keep handle, name and company only.
 - **Why:** rule 6 forbids personal data. Public GitHub handles and company affiliation are enough for ownership and affiliation edges.
