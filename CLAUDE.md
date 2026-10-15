@@ -81,6 +81,8 @@ Use `.venv/bin/python` and run modules with `-m` from the repo root.
 - The FalkorDB image keeps data in `/var/lib/falkordb/data`. Its default query timeout is 1,000 ms, so compose sets `TIMEOUT 30000`. AOF is on (`--appendonly yes`).
 - `db.idx.vector.queryNodes(label, attr, k, vecf32($v)) YIELD node, score` returns `score` as a **distance** (lower means closer).
 - Check Cypher features against https://docs.falkordb.com (`/cypher/known-limitations`). FalkorDB is not Neo4j. Algorithms are `algo.pageRank(label, relType)`, `algo.betweenness({...})`, `algo.labelPropagation`, `algo.SPpaths`, `algo.WCC`. Full-text uses `db.idx.fulltext.createNodeIndex` / `queryNodes`.
+- Re-creating an index raises "already indexed" (treated as success in `src/brain/schema.py`). `shortestPath` is directed-only and only allowed in `WITH` or `RETURN`; for undirected paths use `CALL algo.SPpaths({sourceNode, targetNode, relDirection:'both', maxLen}) YIELD path`. Full-text supports `term*` and fuzzy `%term%`.
+- Interval fields `valid_from` / `valid_to` are epoch seconds; `valid_to = null` means current. The model and demo paths are in `docs/schema.md`.
 - `kep.yaml` is messy: there are status typos (`imlpemented`), inline comments, invalid dates and `None` lists. Always parse through `src/normalize/common.py` (`load_yaml`, `clean_status`, `handles`).
 - Git history needs **full** clones (blobless clones make `git log -p` take about 6 s per file).
 - GitHub API: 5,000 requests per hour with the token. The fetcher sleeps on rate limits and resumes from saved pages (`_complete` markers).
