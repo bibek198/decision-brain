@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Copy the working repo into the backup mirror ../Vidure-secondary-brain (plain files, no git history).
-# Never edit the mirror directly. data/ is excluded (added by hand at the end); docs/ and CLAUDE.md are not mirrored.
+# Never edit the mirror directly. data/ is excluded (added by hand at the end); docs/, CLAUDE.md and LICENSE are not mirrored.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 MIRROR="$(dirname "$ROOT")/Vidure-secondary-brain"
@@ -10,6 +10,7 @@ rsync -a --delete \
   --exclude '/data/' \
   --exclude '/docs/' \
   --exclude '/CLAUDE.md' \
+  --exclude '/LICENSE' \
   --exclude '/.venv/' \
   --exclude '/decision-brain/' \
   --exclude '__pycache__/' --exclude '.pytest_cache/' --exclude '.DS_Store' \

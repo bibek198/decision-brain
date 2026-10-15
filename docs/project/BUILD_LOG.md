@@ -1513,3 +1513,12 @@ git add scripts/sync_mirror.sh CLAUDE.md docs/project/BUILD_LOG.md
 git commit -m "Mirror: exclude CLAUDE.md"
 bash scripts/sync_mirror.sh
 ```
+
+### Step 1.19 · Fri 16 Oct, 02:35 · Stop mirroring `LICENSE`
+The user doesn't want `LICENSE` in the backup mirror. Add `--exclude '/LICENSE' \` after the `/CLAUDE.md` line in `scripts/sync_mirror.sh`, update rule 7 in `CLAUDE.md`, then remove the existing copy:
+```bash
+rm -f ../Vidure-secondary-brain/LICENSE
+git add scripts/sync_mirror.sh CLAUDE.md docs/project/BUILD_LOG.md
+git commit -m "Mirror: exclude LICENSE"
+bash scripts/sync_mirror.sh
+```
